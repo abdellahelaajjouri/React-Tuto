@@ -12,6 +12,10 @@ const Card = (props) => {
         </h4>
         <p>{props.job}</p>
         {props.children}
+        <button className="button" onClick={props.onChangeName}>
+          {" "}
+          Change Name From the card Component{" "}
+        </button>
       </div>
     </div>
   );
