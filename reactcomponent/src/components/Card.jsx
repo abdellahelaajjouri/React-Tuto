@@ -11,10 +11,11 @@ const Card = (props) => {
           <b>{props.name}</b>
         </h4>
         <p>{props.job}</p>
+        <input type="text" value={props.name} onChange={props.onChangeInput} />
         {props.children}
         <button className="button" onClick={props.onChangeName}>
           {" "}
-          Change Name From the card Component{" "}
+          Change Name{" "}
         </button>
       </div>
     </div>
