@@ -50,7 +50,7 @@ function App() {
     const cards_copy = [...cards];
     // 3. change the name of the specific index
     cards_copy[cardIndex].name = event.target.value;
-    // 4. set the card with the latest version of the card copy
+    // 4. set the card with the latest version of the card 
     setCards(cards_copy);
   };
   const cardMarkUp =
