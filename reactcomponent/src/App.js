@@ -2,6 +2,14 @@ import "./App.css";
 import Card from "./components/Card";
 import React, { useState } from "react";
 import { faker } from "@faker-js/faker";
+import { ThemeProvider} from "styled-components";
+import Button from "./element/Button";
+
+
+const theme = {
+  primary: "green",
+  mongo: "yellow",
+};
 
 function App() {
   const [showCard, setShowCard] = useState(true);
@@ -45,14 +53,17 @@ function App() {
   const toggleShowCard = () => setShowCard(!showCard);
   const changeNameHandler = (event, id) => {
     // 1. which card
-    const cardIndex = cards.findIndex((card) => card.id == id);
+    const cardIndex = cards.findIndex((card) => card.id === id);
     // 2. make a copy of the cards
     const cards_copy = [...cards];
     // 3. change the name of the specific index
     cards_copy[cardIndex].name = event.target.value;
-    // 4. set the card with the latest version of the card 
+    // 4. set the card with the latest version of the card
     setCards(cards_copy);
   };
+  const classes = ["button"];
+  if (cards.length < 3) classes.push("pink");
+  if (cards.length < 2) classes.push("red text");
   const cardMarkUp =
     showCard &&
     cards.map((card, index) => (
@@ -65,13 +76,19 @@ function App() {
         onChangeName={(event) => changeNameHandler(event, card.id)}
       />
     ));
+
   return (
-    <div className="App">
-      <button className="button" onClick={toggleShowCard}>
-        Show / Hide
-      </button>
-      {cardMarkUp}
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Button color="mongo" length={cards.length}>
+          Toggle
+        </Button>
+        <button className={classes.join(" ")} onClick={toggleShowCard}>
+          Show / Hide
+        </button>
+        {cardMarkUp}
+      </div>
+    </ThemeProvider>
   );
 }
 
