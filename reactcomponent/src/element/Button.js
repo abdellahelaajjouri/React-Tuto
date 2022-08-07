@@ -9,7 +9,7 @@ const Button = styled.button`
     css`
       background-color: ${(props) =>
         props.length > 2
-          ? props.theme[props.color]
+          ? props.theme[props.color] // access dynamically 
           : props.length < 2
           ? "red"
           : "pink"};
